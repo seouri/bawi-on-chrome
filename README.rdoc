@@ -1,0 +1,25 @@
+= Bawi on Chrome
+
+Google Chrome extension for Bawi (http://www.bawi.org).
+
+== Requirements
+
+* Google Chrome: http://www.google.com/chrome 
+
+== Support
+
+* Bug Report & Feature Request: http://github.com/seouri/bawi-on-chrome/issues
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== License
+
+Copyright (c) 2010 Joon Lee, aka seouri. Bawi on Chrome is released under MIT license (see included MIT-LICENSE or http://creativecommons.org/licenses/MIT/). You are free to share and remix Bawi on Chrome if the copyright notice and license shall be included in all copies or substantial portions of the software. Any of the above conditions can be waived if you get permission from the copyright holder.
