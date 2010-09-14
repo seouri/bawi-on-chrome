@@ -1,6 +1,7 @@
 {
+  "background_page": "background.html",
   "name": "천년바위",
-  "version": "0.2.1",
+  "version": "0.3",
   "description": "천년바위",
   "browser_action": {
     "default_title": "천년바위",
