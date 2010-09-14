@@ -1,6 +1,6 @@
 {
   "name": "천년바위",
-  "version": "0.1.1",
+  "version": "0.2",
   "description": "천년바위",
   "browser_action": {
     "default_title": "천년바위",
