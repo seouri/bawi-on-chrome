@@ -7,6 +7,23 @@
 <script>
 $(document).ready(function() { 
   updateBadge();
+  chrome.tabs.onSelectionChanged.addListener(function(tabId) {
+    chrome.tabs.get(tabId, function(tab) {
+      if (tab.url == "http://www.bawi.org/board/bookmark.cgi") {
+        updateBadge();
+      }
+    });
+  });
+  chrome.tabs.onCreated.addListener(function(tab) {
+    if (tab.url == "http://www.bawi.org/board/bookmark.cgi") {
+      updateBadge();
+    }
+  });
+  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (tab.url == "http://www.bawi.org/board/bookmark.cgi") {
+      updateBadge();
+    }
+  });
 });
 </script>
 </head>
