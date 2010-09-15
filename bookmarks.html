@@ -52,7 +52,6 @@ iframe {
   background-color: #777;
 }
 </style>
-<script src="http://www.bawi.org/board/unreadcount.cgi"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="bawi.js"></script>
 <script>
@@ -67,7 +66,7 @@ $(document).ready(function() {
     $("#twitter").show();
     $("#twitterbutton").addClass("current");
   })
-  setBadge(unreadCount);
+  updateBadge();
 });
 </script>
 </head>

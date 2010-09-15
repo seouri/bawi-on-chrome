@@ -1,5 +1,5 @@
 function updateBadge() {
-  setBadge(unreadCount);
+  initBadge();
   // http://github.com/RobertFischer/JQuery-PeriodicalUpdater
   $.PeriodicalUpdater('http://www.bawi.org/board/unreadcount.cgi', { 
     method: 'get',
@@ -20,4 +20,10 @@ function setBadge(count) {
   var badgeCount = count == 0 ? "" : count.toString();
   chrome.browserAction.setBadgeBackgroundColor({color:[192, 0, 0, 255]});
   chrome.browserAction.setBadgeText({text: badgeCount});
+}
+
+function initBadge() {
+  $.getScript('http://www.bawi.org/board/unreadcount.cgi', function(){
+     setBadge(unreadCount)
+  });
 }
