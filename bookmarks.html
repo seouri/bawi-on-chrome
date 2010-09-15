@@ -55,7 +55,8 @@ iframe {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="bawi.js"></script>
 <script>
-$(document).ready(function() { 
+$(document).ready(function() {
+  console.log('pop up');
   $("#bawibutton").click(function() {
     $("#bawibutton").addClass("current");
     $("#twitter").hide();
@@ -66,13 +67,12 @@ $(document).ready(function() {
     $("#twitter").show();
     $("#twitterbutton").addClass("current");
   })
-  updateBadge();
 });
 </script>
 </head>
 <body>
 <div id="bawi">
-<iframe src="http://www.bawi.org/board/bookmark.cgi" width="320" height="500"></iframe>
+<iframe id="bawiframe" src="http://www.bawi.org/board/bookmark.cgi" width="320" height="500" onload="initBadge()"></iframe>
 </div>
 <div id="twitter" style="display: none">
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>

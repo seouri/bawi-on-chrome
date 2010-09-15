@@ -14,16 +14,24 @@ function updateBadge() {
     eval(data);
     setBadge(unreadCount);
   });
+  console.log('update badge');  
 }
 
 function setBadge(count) {
-  var badgeCount = count == 0 ? "" : count.toString();
-  chrome.browserAction.setBadgeBackgroundColor({color:[192, 0, 0, 255]});
-  chrome.browserAction.setBadgeText({text: badgeCount});
+  if (count == -1) {
+    chrome.browserAction.setIcon({path: "icon16-gray.png"})
+  } else {
+    var badgeCount = count == 0 ? "" : count.toString();
+    chrome.browserAction.setIcon({path: "icon16.png"})
+    chrome.browserAction.setBadgeBackgroundColor({color:[192, 0, 0, 255]});
+    chrome.browserAction.setBadgeText({text: badgeCount});
+  }
+  console.log('set badge');
 }
 
 function initBadge() {
+  console.log('init badge');
   $.getScript('http://www.bawi.org/board/unreadcount.cgi', function(){
-     setBadge(unreadCount)
+     setBadge(unreadCount);
   });
 }

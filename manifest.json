@@ -1,11 +1,11 @@
 {
   "background_page": "background.html",
   "name": "천년바위",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "천년바위",
   "browser_action": {
     "default_title": "천년바위",
-    "default_icon": "icon16.png",
+    "default_icon": "icon16-gray.png",
     "popup": "bookmarks.html"
   },
   "icons": { "16": "icon16.png",
