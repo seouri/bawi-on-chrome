@@ -5,10 +5,13 @@
 <script src="bawi.js"></script>
 <script>
 $(document).ready(function() { 
-  updateBadge();
+  console.log('background loaded');
+  initBadge();
+  window.setInterval(initBadge, 60000);
+  //updateBadge();
   chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.url.match(/http:\/\/www.bawi.org/)) {
-      updateBadge();
+      initBadge();
     }
   });
 });
