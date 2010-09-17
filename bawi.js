@@ -42,3 +42,15 @@ function post_to_bawi(info, tab) {
     chrome.tabs.executeScript(newtab.id, {file: "post.js"});
   });
 }
+
+function post_to_article(info, tab) {
+  var article = localStorage["default_article_for_comment"];
+  if (article) {
+    var option = {url: article + ';comment_title=' + escape(tab.title) + ';comment_url=' + escape(tab.url)}
+    chrome.tabs.create(option, function(newtab) {
+      chrome.tabs.executeScript(newtab.id, {file: "comment.js"});
+    });
+  } else {
+    alert("천년바위 확장 프로그램 아이콘을 마우스 오른쪽 클릭해서 옵션 메뉴에 짧은답글을 올릴 글의 주소를 저장해 주세요.");
+  }
+}
