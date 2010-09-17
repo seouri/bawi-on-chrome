@@ -30,8 +30,15 @@ function setBadge(count) {
 }
 
 function initBadge() {
-  console.log('init badge');
   $.getScript('http://www.bawi.org/board/unreadcount.cgi', function(){
-     setBadge(unreadCount);
+    console.log('init badge: ' + unreadCount.toString());
+    setBadge(unreadCount);
+  });
+}
+
+function post_to_bawi(info, tab) {
+  var option = {url: 'http://www.bawi.org/board/write.cgi?bid=876;p=498;title=' + escape(tab.title) + ';url=' + escape(tab.url)}
+  chrome.tabs.create(option, function(newtab) {
+    chrome.tabs.executeScript(newtab.id, {file: "post.js"});
   });
 }
