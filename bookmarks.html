@@ -57,7 +57,13 @@ iframe {
 <script src="bawi.js"></script>
 <script>
 $(document).ready(function() {
-  console.log('pop up');
+  var last_url = "http://www.bawi.org";
+  chrome.cookies.get({url: "http://www.bawi.org", name: "last_url"}, function (cookie) {
+    last_url = unescape(cookie.value);
+    $('#bawiframe').attr("src", last_url);
+  });
+  if (! $('#bawiframe').attr("src"))
+    $('#bawiframe').attr("src", last_url);
   $("#bawibutton").click(function() {
     $("#bawibutton").addClass("current");
     $("#twitter").hide();
@@ -73,7 +79,7 @@ $(document).ready(function() {
 </head>
 <body>
 <div id="bawi">
-<iframe id="bawiframe" src="http://www.bawi.org/board/bookmark.cgi" width="320" height="500" onload="initBadge()"></iframe>
+<iframe id="bawiframe" width="320" height="500" onload="initBadge()"></iframe>
 </div>
 <div id="twitter" style="display: none">
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
