@@ -15,6 +15,6 @@ var aid = param["aid"];
 var comment_url = unescape(param["comment_url"]);
 var comment_title = unescape(param["comment_title"]);
 var cid = "article-" + aid + "-comment-form";
-document.getElementById(cid).value = comment_title + ' ' + comment_url + ' ';
+document.getElementById(cid).value = comment_url + ' ' + comment_title + ' ';
 document.getElementById(cid).focus();
 
