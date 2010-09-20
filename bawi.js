@@ -44,6 +44,8 @@ function post_to_board(info, tab) {
     chrome.tabs.create(option, function(newtab) {
       chrome.tabs.executeScript(newtab.id, {file: "post.js"});
     });
+  } else {
+    alert("천년바위 확장 프로그램 아이콘을 마우스 오른쪽 클릭해서 옵션 메뉴에 글을 올릴 게시판의 주소를 저장해 주세요.");
   }
 }
 
