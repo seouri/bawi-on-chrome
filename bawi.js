@@ -36,11 +36,15 @@ function initBadge() {
   });
 }
 
-function post_to_bawi(info, tab) {
-  var option = {url: 'http://www.bawi.org/board/write.cgi?bid=876;p=498;title=' + escape(tab.title) + ';url=' + escape(tab.url)}
-  chrome.tabs.create(option, function(newtab) {
-    chrome.tabs.executeScript(newtab.id, {file: "post.js"});
-  });
+function post_to_board(info, tab) {
+  var board = localStorage["default_board_for_article"];
+  if (board) {
+    var write = board.replace(/read.cgi/, "write.cgi");
+    var option = {url: write + ';title=' + escape(tab.title) + ';url=' + escape(tab.url)}
+    chrome.tabs.create(option, function(newtab) {
+      chrome.tabs.executeScript(newtab.id, {file: "post.js"});
+    });
+  }
 }
 
 function post_to_article(info, tab) {

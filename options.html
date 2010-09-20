@@ -1,6 +1,8 @@
 <html>
-<head><title>Bawi on Chrome Options</title></head>
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.2.0/build/cssreset/reset-min.css&3.2.0/build/cssfonts/fonts-min.css&3.2.0/build/cssfonts/base-min.css">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Bawi on Chrome Options</title></head>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.2.0/build/cssfonts/fonts-min.css&3.2.0/build/cssreset/reset-min.css&3.2.0/build/cssbase/base-min.css">
 <style>
   body, html {
     height: 100%;
@@ -14,23 +16,26 @@
     border-radius: 6px;
     -webkit-box-shadow: 5px 5px 10px #888;
   }
-  input {
-    width: 100%;
-  }
   #options h1 {
     margin-top: 0;
+    font-size: 197%;
   }
   #options h2 {
     margin-bottom: 0;
+    font-size: 153.9%;
   }
   #options input {
+    width: 100%;
     padding: 0.25em;
     font-size: 100%;
   }
   #options button {
     width: 100%;
-    margin-top: 1em;
+    margin-top: 3em;
     font-size: 153.9%;
+  }
+  .example {
+    margin-top: 0.5em;
   }
 </style>
 <script type="text/javascript">
@@ -38,6 +43,9 @@
 function save_options() {
   var article = document.getElementById("default_article_for_comment").value;
   localStorage["default_article_for_comment"] = article;
+
+  var board = document.getElementById("default_board_for_article").value;
+  localStorage["default_board_for_article"] = board;
 
   // Update status to let user know options were saved.
   var status = document.getElementById("save_button");
@@ -50,10 +58,13 @@ function save_options() {
 // Restores select box state to saved value from localStorage.
 function restore_options() {
   var article = localStorage["default_article_for_comment"];
-  if (!article) {
-    return;
+  if (article) {
+    document.getElementById("default_article_for_comment").value = article;
   }
-  document.getElementById("default_article_for_comment").value = article;
+  var board = localStorage["default_board_for_article"];
+  if (board) {
+    document.getElementById("default_board_for_article").value = board;
+  }
 }
 
 </script>
@@ -61,8 +72,12 @@ function restore_options() {
 <body onload="restore_options()">
 <div id="options">
   <h1>설정</h1>
+  <h2>새 글 올리기 게시판의 주소</h2>
+  <input type="text" id="default_board_for_article">
+  <div class="example">예: http://www.bawi.org/board/read.cgi?bid=3017</div>
   <h2>짧은답글 올리기 글의 주소</h2>
   <input type="text" id="default_article_for_comment">
+  <div class="example">예: http://www.bawi.org/board/read.cgi?bid=3017;aid=1436863;p=1</div>
   <button id="save_button" onclick="save_options()">저장</button>
 </div>
 </body>
