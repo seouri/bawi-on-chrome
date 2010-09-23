@@ -19,10 +19,11 @@ function updateBadge() {
 
 function setBadge(count) {
   if (count == -1) {
-    chrome.browserAction.setIcon({path: "icon16-gray.png"})
+    chrome.browserAction.setIcon({path: "icon16-gray.png"});
+    chrome.browserAction.setBadgeText({text: ""});
   } else {
     var badgeCount = count == 0 ? "" : count.toString();
-    chrome.browserAction.setIcon({path: "icon16.png"})
+    chrome.browserAction.setIcon({path: "icon16.png"});
     chrome.browserAction.setBadgeBackgroundColor({color:[192, 0, 0, 255]});
     chrome.browserAction.setBadgeText({text: badgeCount});
   }
