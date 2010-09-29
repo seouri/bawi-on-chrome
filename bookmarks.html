@@ -60,6 +60,9 @@ $(document).ready(function() {
   var last_url = "http://www.bawi.org";
   chrome.cookies.get({url: "http://www.bawi.org", name: "last_url"}, function (cookie) {
     last_url = unescape(cookie.value);
+    if (last_url.match(/http:\/\/www.bawi.org\/main\/note.cgi/)) {
+      last_url = "http://www.bawi.org/board/bookmark.cgi";
+    }
     $('#bawiframe').attr("src", last_url);
   });
   if (! $('#bawiframe').attr("src"))
