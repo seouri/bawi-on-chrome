@@ -67,16 +67,38 @@ $(document).ready(function() {
   });
   if (! $('#bawiframe').attr("src"))
     $('#bawiframe').attr("src", last_url);
+
   $("#bawibutton").click(function() {
     $("#bawibutton").addClass("current");
     $("#twitter").hide();
     $("#twitterbutton").removeClass("current");
-  })
+  });
+
   $("#twitterbutton").click(function() {
     $("#bawibutton").removeClass("current");
     $("#twitter").show();
     $("#twitterbutton").addClass("current");
-  })
+  });
+  
+  var article = localStorage["default_article_for_comment"];
+  if (article) {
+    $("#myarticlebutton").click(function() {
+      $("#bawibutton").addClass("current");
+      $("#twitter").hide();
+      $("#twitterbutton").removeClass("current");
+      $('#bawiframe').attr("src", article);
+    });
+  };
+
+  var board = localStorage["default_board_for_article"];
+  if (board) {
+    $("#myboardbutton").click(function() {
+      $("#bawibutton").addClass("current");
+      $("#twitter").hide();
+      $("#twitterbutton").removeClass("current");
+      $('#bawiframe').attr("src", board);
+    });
+  };
 });
 </script>
 </head>
@@ -123,6 +145,8 @@ new TWTR.Widget({
   <ul>
     <li id="bawibutton" class="current">Bawi</li>
     <li id="twitterbutton">Twitter</li>
+    <li id="myboardbutton">My Board</li>
+    <li id="myarticlebutton">My Article</li>
   </ul>
 </div>
 </body>
