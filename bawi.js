@@ -41,7 +41,7 @@ function post_to_board(info, tab) {
   var board = localStorage["default_board_for_article"];
   if (board) {
     var write = board.replace(/read.cgi/, "write.cgi");
-    var option = {url: write + ';title=' + escape(tab.title) + ';url=' + escape(tab.url)}
+    var option = {url: write + ';title=' + escape(tab.title) + ';url=' + escape(googleUrl(tab.url))}
     chrome.tabs.create(option, function(newtab) {
       chrome.tabs.executeScript(newtab.id, {file: "post.js"});
     });
@@ -53,11 +53,28 @@ function post_to_board(info, tab) {
 function post_to_article(info, tab) {
   var article = localStorage["default_article_for_comment"];
   if (article) {
-    var option = {url: article + ';comment_title=' + escape(tab.title) + ';comment_url=' + escape(tab.url)}
+    var option = {url: article + ';comment_title=' + escape(tab.title) + ';comment_url=' + escape(googleUrl(tab.url))}
     chrome.tabs.create(option, function(newtab) {
       chrome.tabs.executeScript(newtab.id, {file: "comment.js"});
     });
   } else {
     alert("천년바위 확장 프로그램 아이콘을 마우스 오른쪽 클릭해서 옵션 메뉴에 짧은답글을 올릴 글의 주소를 저장해 주세요.");
   }
+}
+
+function googleUrl(url) {
+  var response;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://goo.gl/api/shorten?url=" + encodeURIComponent(url), false);
+  xhr.setRequestHeader("X-Auth-Google-Url-Shortener", "true");
+  xhr.onload = function() {
+    var rt = JSON.parse(xhr.responseText);
+    if(rt["short_url"] == undefined) {
+      response = rt["error_message"];
+    } else {  
+      response = rt["short_url"];
+    }
+  }
+  xhr.send(null);
+  return response;
 }
