@@ -32,7 +32,7 @@ iframe {
   display: block;
   border-radius: 0px 0px 6px 6px;
   padding: 0 6px 0 6px;
-  -webkit-box-shadow: 0 -2px 10px #888;
+  -webkit-box-shadow: 0 -2px 10px #666;
 }
 #navigation ul {
   margin: 0;
@@ -51,6 +51,21 @@ iframe {
 }
 .current {
   background-color: #777;
+}
+#optionshelp {
+  z-index: 1000;
+  background-color: #ffa;
+  position:absolute;
+  right: 0;
+  width: 12.6em;
+  height: 7.8em;
+  padding: 0.5em;
+  display:none;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: -2px 2px 10px #888;
+  opacity:0.95;
+  line-height: 165%;
+  text-align: justify;
 }
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -79,19 +94,10 @@ $(document).ready(function() {
     $("#twitter").show();
     $("#twitterbutton").addClass("current");
   });
-  
-  var article = localStorage["default_article_for_comment"];
-  if (article) {
-    $("#myarticlebutton").click(function() {
-      $("#bawibutton").addClass("current");
-      $("#twitter").hide();
-      $("#twitterbutton").removeClass("current");
-      $('#bawiframe').attr("src", article);
-    });
-  };
 
   var board = localStorage["default_board_for_article"];
   if (board) {
+    $("#navigation ul").append('<li id="myboardbutton">My Board</li>');
     $("#myboardbutton").click(function() {
       $("#bawibutton").addClass("current");
       $("#twitter").hide();
@@ -99,6 +105,29 @@ $(document).ready(function() {
       $('#bawiframe').attr("src", board);
     });
   };
+  
+  var article = localStorage["default_article_for_comment"];
+  if (article) {
+    $("#navigation ul").append('<li id="myarticlebutton">My Article</li>');
+    $("#myarticlebutton").click(function() {
+      $("#bawibutton").addClass("current");
+      $("#twitter").hide();
+      $("#twitterbutton").removeClass("current");
+      $('#bawiframe').attr("src", article);
+    });
+  };
+  
+  if (! board && ! article) {
+    $("#navigation ul").append('<li id="optionsbutton">Add My Board & Article</li>');
+    $("#optionsbutton").hover(
+      function () {
+        $('#optionshelp').slideDown();
+      }, 
+      function () {
+        $('#optionshelp').slideUp();
+      }
+    );
+  }
 });
 </script>
 </head>
@@ -141,12 +170,11 @@ new TWTR.Widget({
 }).render().setList('seouri', 'bawi').start();
 </script>
 </div>
+<div id="optionshelp">바위 아이콘에서 오른쪽 마우스로 클릭한 뒤, Options 메뉴를 선택해서 원하는 게시판과 글을 지정할 수 있습니다.</div>
 <div id="navigation">
   <ul>
     <li id="bawibutton" class="current">Bawi</li>
     <li id="twitterbutton">Twitter</li>
-    <li id="myboardbutton">My Board</li>
-    <li id="myarticlebutton">My Article</li>
   </ul>
 </div>
 </body>
